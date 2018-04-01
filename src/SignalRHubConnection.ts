@@ -1,8 +1,12 @@
 import { runtime, IApiConnection, SrServiceResponse, SrServiceRequest, Log } from "strontium";
-import ISignalRConnectionOptions from "./ISignalRConnectionOptions";
 import { HubConnection } from "@aspnet/signalr"
 
-export default class SignalRHubConnection implements IApiConnection {
+export interface ISignalRConnectionOptions {
+    hubUrl: string,
+    handled: string[]
+}
+
+export class SignalRHubConnection implements IApiConnection {
     private _hubConnection: HubConnection;
     private _connected: boolean;
 

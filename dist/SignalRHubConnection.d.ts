@@ -1,6 +1,9 @@
 import { IApiConnection, SrServiceResponse, SrServiceRequest } from "strontium";
-import ISignalRConnectionOptions from "./ISignalRConnectionOptions";
-export default class SignalRHubConnection implements IApiConnection {
+export interface ISignalRConnectionOptions {
+    hubUrl: string;
+    handled: string[];
+}
+export declare class SignalRHubConnection implements IApiConnection {
     options: ISignalRConnectionOptions;
     private _hubConnection;
     private _connected;

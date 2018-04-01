@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { runtime, Log } from "strontium";
 import { HubConnection } from "@aspnet/signalr";
-export default class SignalRHubConnection {
+export class SignalRHubConnection {
     constructor(options) {
         this.options = options;
     }
