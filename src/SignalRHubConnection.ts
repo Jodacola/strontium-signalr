@@ -8,7 +8,6 @@ export interface ISignalRConnectionOptions {
 
 export class SignalRHubConnection implements IApiConnection {
     private _hubConnection: HubConnection;
-    private _connected: boolean;
 
     constructor(public options: ISignalRConnectionOptions) {
 
@@ -57,7 +56,6 @@ export class SignalRHubConnection implements IApiConnection {
     }
 
     private onClosed(e: Error) {
-        this._connected = false;
         this._hubConnection = undefined;
         if (e) {
             Log.e(this, 'Error on SignalR close', { error: e });
@@ -72,7 +70,7 @@ export class SignalRHubConnection implements IApiConnection {
     }
 
     connected(): boolean {
-        return !!this._hubConnection && this._connected;
+        return !!this._hubConnection;
     }
 
     onResponse: (resp: SrServiceResponse) => void;

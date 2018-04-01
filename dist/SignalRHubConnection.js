@@ -50,7 +50,6 @@ export class SignalRHubConnection {
         runtime.messaging.broadcast('DirectSignalRMessage', false, { message: message, args: args });
     }
     onClosed(e) {
-        this._connected = false;
         this._hubConnection = undefined;
         if (e) {
             Log.e(this, 'Error on SignalR close', { error: e });
@@ -64,7 +63,7 @@ export class SignalRHubConnection {
         });
     }
     connected() {
-        return !!this._hubConnection && this._connected;
+        return !!this._hubConnection;
     }
 }
 //# sourceMappingURL=SignalRHubConnection.js.map

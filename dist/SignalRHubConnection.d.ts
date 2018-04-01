@@ -6,7 +6,6 @@ export interface ISignalRConnectionOptions {
 export declare class SignalRHubConnection implements IApiConnection {
     options: ISignalRConnectionOptions;
     private _hubConnection;
-    private _connected;
     constructor(options: ISignalRConnectionOptions);
     initialize(cb: (s: boolean) => void, reinit: boolean): Promise<void>;
     private validateOptions(options);
