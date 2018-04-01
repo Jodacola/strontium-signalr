@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": false,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "target": "es6",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "moduleResolution": "node",
+    "lib": [ "dom", "es2015.promise", "es6" ],
+    "jsx": "react",
+    "module": "es6",
+    "typeRoots": [
+      "./node_modules/@types",
+      "./lib/typings"
+    ]
+  },
+  "compileOnSave": false,
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

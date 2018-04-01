@@ -57,3 +57,15 @@ typings/
 # dotenv environment variables file
 .env
 
+.vs
+
+.DS_Store
+
+# Local testing configuration files
+test_src
+.babelrc
+webpack*.js
+gulpfile*
+wwwroot
+server.js
+tsconfig.testing.json

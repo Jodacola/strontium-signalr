@@ -1,0 +1,93 @@
+{
+    "name": "strontium-signalr",
+    "version": "0.1.19",
+    "description": "",
+    "main": "dist/strontium-signalr.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "types": "dist/strontium-signalr.d.ts",
+    "scripts": {
+        "prepublish": "npm run build",
+        "build": "tsc",
+        "test": "jest --no-cache"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jodacola/strontium-signalr.git"
+    },
+    "files": [
+        "dist",
+        "package.json",
+        "LICENSE",
+        "README.md"
+    ],
+    "author": "Josh Coulter",
+    "bugs": {
+        "url": "https://github.com/Jodacola/strontium-signalr/issues"
+    },
+    "homepage": "https://github.com/Jodacola/strontium-signalr#readme",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/enzyme": "^3.1.6",
+        "@types/enzyme-adapter-react-16": "^1.0.1",
+        "@types/jest": "^22.0.1",
+        "@types/react-test-renderer": "^16.0.0",
+        "awesome-typescript-loader": "^3.4.1",
+        "babel-core": "^6.26.0",
+        "babel-jest": "^22.0.4",
+        "babel-loader": "^7.1.2",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "babel-preset-react": "^6.24.1",
+        "connect": "^3.6.6",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "gulp": "^3.9.1",
+        "gulp-run": "^1.7.1",
+        "gulp-sass": "^3.1.0",
+        "jest": "^22.0.5",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-test-renderer": "^16.2.0",
+        "run-sequence": "^2.2.1",
+        "serve-static": "^1.13.2",
+        "ts-jest": "^22.0.1",
+        "typescript": "^2.6.2",
+        "webpack": "^3.10.0",
+        "webpack-stream": "^4.0.0",
+        "@types/bootstrap": "^3.3.36",
+        "@types/circular-json": "^0.4.0",
+        "@types/jquery": "^3.2.17",
+        "@types/react": "^16.0.32",
+        "@types/react-bootstrap": "0.31.6",
+        "@types/react-dom": "^16.0.3",
+        "@types/react-transition-group": "^2.0.6",
+        "@types/spin.js": "^3.0.0",
+        "@types/uuid": "^3.4.3",
+        "circular-json": "^0.5.1",
+        "spin.js": "^3.1.0",
+        "uuid": "^3.1.0",
+        "strontium": "git+ssh://git@github.com/Jodacola/strontium.git#0.1.20",
+        "@aspnet/signalr": "^1.0.0-preview1-update1"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "js",
+            "ts",
+            "tsx"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "ts-jest"
+        },
+        "testMatch": [
+            "<rootDir>/spec/**/*.(js|ts|tsx)"
+        ],
+        "verbose": true,
+        "globals": {
+            "ts-jest": {
+                "tsConfigFile": "tsconfig.json"
+            }
+        }
+    }
+}
