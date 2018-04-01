@@ -2,11 +2,11 @@
     "name": "strontium-signalr",
     "version": "0.1.1",
     "description": "",
-    "main": "dist/strontium-signalr.js",
+    "main": "dist/index.js",
     "directories": {
         "lib": "lib"
     },
-    "types": "dist/strontium-signalr.d.ts",
+    "types": "dist/index.d.ts",
     "scripts": {
         "prepublish": "npm run build",
         "build": "tsc",
