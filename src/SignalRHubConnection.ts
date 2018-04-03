@@ -1,4 +1,4 @@
-import { runtime, IApiConnection, SrServiceResponse, SrServiceRequest, Log } from "strontium";
+import { runtime, IApiConnection, SrServiceResponse, SrServiceRequest, Log } from "react-strontium";
 import { HubConnection } from "@aspnet/signalr"
 
 export interface ISignalRConnectionOptions {

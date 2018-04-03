@@ -1,5 +1,5 @@
 {
-    "name": "strontium-signalr",
+    "name": "react-strontium-signalr",
     "version": "0.1.4",
     "description": "",
     "main": "dist/index.js",
@@ -64,7 +64,7 @@
         "run-sequence": "^2.2.1",
         "serve-static": "^1.13.2",
         "spin.js": "^3.1.0",
-        "strontium": "git+ssh://git@github.com/Jodacola/strontium.git#0.1.20",
+        "react-strontium": "^0.1.20",
         "ts-jest": "^22.0.1",
         "typescript": "^2.6.2",
         "uuid": "^3.1.0",

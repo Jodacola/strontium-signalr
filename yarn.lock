@@ -4956,6 +4956,23 @@ react-reconciler@^0.7.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-strontium@^0.1.20:
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/react-strontium/-/react-strontium-0.1.20.tgz#2944a7f03f10090f6d96cb28c8408c67d41124da"
+  dependencies:
+    "@types/bootstrap" "^3.3.36"
+    "@types/circular-json" "^0.4.0"
+    "@types/jquery" "^3.2.17"
+    "@types/react" "^16.0.32"
+    "@types/react-bootstrap" "0.31.6"
+    "@types/react-dom" "^16.0.3"
+    "@types/react-transition-group" "^2.0.6"
+    "@types/spin.js" "^3.0.0"
+    "@types/uuid" "^3.4.3"
+    circular-json "^0.5.1"
+    spin.js "^3.1.0"
+    uuid "^3.1.0"
+
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.2.0:
   version "16.3.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.3.0.tgz#7e88d8cb4c2b95c161b6c6c998991166f74d473e"
@@ -5747,23 +5764,6 @@ strip-indent@^1.0.1:
 strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
-
-"strontium@git+ssh://git@github.com/Jodacola/strontium.git#0.1.20":
-  version "0.1.20"
-  resolved "git+ssh://git@github.com/Jodacola/strontium.git#d938d0f3405efbfe2ddb32518952c213414b2798"
-  dependencies:
-    "@types/bootstrap" "^3.3.36"
-    "@types/circular-json" "^0.4.0"
-    "@types/jquery" "^3.2.17"
-    "@types/react" "^16.0.32"
-    "@types/react-bootstrap" "0.31.6"
-    "@types/react-dom" "^16.0.3"
-    "@types/react-transition-group" "^2.0.6"
-    "@types/spin.js" "^3.0.0"
-    "@types/uuid" "^3.4.3"
-    circular-json "^0.5.1"
-    spin.js "^3.1.0"
-    uuid "^3.1.0"
 
 subarg@^1.0.0:
   version "1.0.0"

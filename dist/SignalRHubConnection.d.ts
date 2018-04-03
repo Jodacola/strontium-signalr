@@ -1,4 +1,4 @@
-import { IApiConnection, SrServiceResponse, SrServiceRequest } from "strontium";
+import { IApiConnection, SrServiceResponse, SrServiceRequest } from "react-strontium";
 export interface ISignalRConnectionOptions {
     hubUrl: string;
     handled: string[];

@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { runtime, Log } from "strontium";
+import { runtime, Log } from "react-strontium";
 import { HubConnection } from "@aspnet/signalr";
 export class SignalRHubConnection {
     constructor(options) {
