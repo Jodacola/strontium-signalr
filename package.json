@@ -1,6 +1,6 @@
 {
     "name": "react-strontium-signalr",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "",
     "main": "dist/index.js",
     "directories": {
@@ -60,11 +60,11 @@
         "jest": "^22.0.5",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "react-strontium": "^0.1.21",
         "react-test-renderer": "^16.2.0",
         "run-sequence": "^2.2.1",
         "serve-static": "^1.13.2",
         "spin.js": "^3.1.0",
-        "react-strontium": "^0.1.21",
         "ts-jest": "^22.0.1",
         "typescript": "^2.6.2",
         "uuid": "^3.1.0",
