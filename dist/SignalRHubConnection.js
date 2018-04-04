@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { runtime, Log } from "react-strontium";
+import { SrServiceResponse, Log } from "react-strontium";
 import { HubConnection } from "@aspnet/signalr";
 export class SignalRHubConnection {
     constructor(options) {
@@ -47,7 +47,13 @@ export class SignalRHubConnection {
         return true;
     }
     onMessage(message, args) {
-        runtime.messaging.broadcast('DirectSignalRMessage', false, { message: message, args: args });
+        if (this.onServerMessage) {
+            let resp = new SrServiceResponse();
+            resp.action = message;
+            resp.good = true;
+            resp.data = args;
+            this.onServerMessage(resp);
+        }
     }
     onClosed(e) {
         this._hubConnection = undefined;
@@ -58,9 +64,25 @@ export class SignalRHubConnection {
     sendRequest(request) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.connected()) {
-                let resp = yield this._hubConnection.invoke(request.action, request.content);
+                try {
+                    let resp = yield this._hubConnection.invoke(request.action, request.content);
+                    this.processResponse(request, resp);
+                }
+                catch (err) {
+                    if (this.onFailedRequest) {
+                        this.onFailedRequest(request, err);
+                    }
+                }
             }
         });
+    }
+    processResponse(request, response) {
+        let resp = new SrServiceResponse(request);
+        resp.good = true;
+        resp.data = response;
+        if (this.onResponse) {
+            this.onResponse(resp);
+        }
     }
     connected() {
         return !!this._hubConnection;

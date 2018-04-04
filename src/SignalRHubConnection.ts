@@ -52,7 +52,13 @@ export class SignalRHubConnection implements IApiConnection {
     }
 
     private onMessage(message: string, args: any[]) {
-        runtime.messaging.broadcast('DirectSignalRMessage', false, { message: message, args: args });
+        if (this.onServerMessage) {
+            let resp = new SrServiceResponse();
+            resp.action = message;
+            resp.good = true;
+            resp.data = args;
+            this.onServerMessage(resp);
+        }
     }
 
     private onClosed(e: Error) {
@@ -62,10 +68,26 @@ export class SignalRHubConnection implements IApiConnection {
         }
     }
 
-    public async  sendRequest(request: SrServiceRequest) {
+    public async sendRequest(request: SrServiceRequest) {
         if (this.connected()) {
-            let resp = await this._hubConnection.invoke(request.action, request.content);
+            try {
+                let resp = await this._hubConnection.invoke(request.action, request.content);
+                this.processResponse(request, resp);
+            } catch (err) {
+                if (this.onFailedRequest) {
+                    this.onFailedRequest(request, err);
+                }
+            }
+        }
+    }
 
+    private processResponse(request: SrServiceRequest, response: any) {
+        let resp = new SrServiceResponse(request);
+        resp.good = true;
+        resp.data = response;
+
+        if (this.onResponse) {
+            this.onResponse(resp);
         }
     }
 

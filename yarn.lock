@@ -4956,9 +4956,9 @@ react-reconciler@^0.7.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-strontium@^0.1.20:
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/react-strontium/-/react-strontium-0.1.20.tgz#2944a7f03f10090f6d96cb28c8408c67d41124da"
+react-strontium@^0.1.21:
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/react-strontium/-/react-strontium-0.1.21.tgz#2a9dfd5e39cf76c3a049bc31bd5e5594a1413b4b"
   dependencies:
     "@types/bootstrap" "^3.3.36"
     "@types/circular-json" "^0.4.0"

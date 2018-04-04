@@ -12,6 +12,7 @@ export declare class SignalRHubConnection implements IApiConnection {
     private onMessage(message, args);
     private onClosed(e);
     sendRequest(request: SrServiceRequest): Promise<void>;
+    private processResponse(request, response);
     connected(): boolean;
     onResponse: (resp: SrServiceResponse) => void;
     onFailedRequest: (req: SrServiceRequest, error: any[]) => void;
