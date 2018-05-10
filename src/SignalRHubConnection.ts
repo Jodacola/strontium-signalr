@@ -1,5 +1,5 @@
 import { runtime, IApiConnection, SrServiceResponse, SrServiceRequest, Log } from "react-strontium";
-import { HubConnection } from "@aspnet/signalr"
+import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr"
 
 export interface ISignalRConnectionOptions {
     hubUrl: string,
@@ -19,7 +19,7 @@ export class SignalRHubConnection implements IApiConnection {
             return;
         }
 
-        this._hubConnection = new HubConnection(this.options.hubUrl);
+        this._hubConnection = new HubConnectionBuilder().withUrl(this.options.hubUrl).build();
         this._hubConnection.onclose(e => this.onClosed(e));
         this.options.handled.forEach(v => this._hubConnection.on(v, args => this.onMessage(v, args)));
         try {

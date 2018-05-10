@@ -29,7 +29,7 @@
     "homepage": "https://github.com/Jodacola/strontium-signalr#readme",
     "license": "MIT",
     "devDependencies": {
-        "@aspnet/signalr": "^1.0.0-preview1-update1",
+        "@aspnet/signalr": "^1.0.0-preview2-final",
         "@types/bootstrap": "^3.3.36",
         "@types/circular-json": "^0.4.0",
         "@types/enzyme": "^3.1.6",

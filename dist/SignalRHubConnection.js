@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { SrServiceResponse, Log } from "react-strontium";
-import { HubConnection } from "@aspnet/signalr";
+import { HubConnectionBuilder } from "@aspnet/signalr";
 export class SignalRHubConnection {
     constructor(options) {
         this.options = options;
@@ -18,7 +18,7 @@ export class SignalRHubConnection {
                 cb(false);
                 return;
             }
-            this._hubConnection = new HubConnection(this.options.hubUrl);
+            this._hubConnection = new HubConnectionBuilder().withUrl(this.options.hubUrl).build();
             this._hubConnection.onclose(e => this.onClosed(e));
             this.options.handled.forEach(v => this._hubConnection.on(v, args => this.onMessage(v, args)));
             try {
