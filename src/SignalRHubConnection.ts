@@ -3,11 +3,14 @@ import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr"
 
 export interface ISignalRConnectionOptions {
     hubUrl: string,
-    handled: string[]
+    handled: string[],
+    reconnectOnClose?: boolean,
+    reconnectAttemptInterval?: number
 }
 
 export class SignalRHubConnection implements IApiConnection {
     private _hubConnection: HubConnection;
+    private _initialized: boolean;
 
     constructor(public options: ISignalRConnectionOptions) {
 
@@ -22,14 +25,34 @@ export class SignalRHubConnection implements IApiConnection {
         this._hubConnection = new HubConnectionBuilder().withUrl(this.options.hubUrl).build();
         this._hubConnection.onclose(e => this.onClosed(e));
         this.options.handled.forEach(v => this._hubConnection.on(v, args => this.onMessage(v, args)));
+        await this.startConnection(cb);
+    }
+
+    private async startConnection(callback: (s: boolean) => void, reconnect: boolean = false) {
         try {
             await this._hubConnection.start();
-            cb(true);
+            this._initialized = true;
+            if (callback && !reconnect) {
+                callback(true);
+            }
         }
         catch {
-            this._hubConnection = undefined;
-            cb(false);
+            if (!reconnect) {
+                this._hubConnection = undefined;
+                if (callback) {
+                    callback(false);
+                }
+            } else {
+                this.enqueueReconnect();
+            }
         }
+    }
+
+    private enqueueReconnect() {
+        window.setTimeout(() => {
+            Log.d(this, 'Attempting SignalR reconnect');
+            this.startConnection(null, true);
+        }, Math.max(this.options.reconnectAttemptInterval || 0, 10000));
     }
 
     private validateOptions(options: ISignalRConnectionOptions): boolean {
@@ -62,9 +85,16 @@ export class SignalRHubConnection implements IApiConnection {
     }
 
     private onClosed(e: Error) {
-        this._hubConnection = undefined;
         if (e) {
             Log.e(this, 'Error on SignalR close', { error: e });
+        }
+
+        this._initialized = false;
+
+        if (this.options.reconnectOnClose === true) {
+            this.enqueueReconnect();
+        } else {
+            this._hubConnection = undefined;
         }
     }
 

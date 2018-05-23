@@ -2,12 +2,17 @@ import { IApiConnection, SrServiceResponse, SrServiceRequest } from "react-stron
 export interface ISignalRConnectionOptions {
     hubUrl: string;
     handled: string[];
+    reconnectOnClose?: boolean;
+    reconnectAttemptInterval?: number;
 }
 export declare class SignalRHubConnection implements IApiConnection {
     options: ISignalRConnectionOptions;
     private _hubConnection;
+    private _initialized;
     constructor(options: ISignalRConnectionOptions);
     initialize(cb: (s: boolean) => void, reinit: boolean): Promise<void>;
+    private startConnection(callback, reconnect?);
+    private enqueueReconnect();
     private validateOptions(options);
     private onMessage(message, args);
     private onClosed(e);

@@ -21,15 +21,36 @@ export class SignalRHubConnection {
             this._hubConnection = new HubConnectionBuilder().withUrl(this.options.hubUrl).build();
             this._hubConnection.onclose(e => this.onClosed(e));
             this.options.handled.forEach(v => this._hubConnection.on(v, args => this.onMessage(v, args)));
+            yield this.startConnection(cb);
+        });
+    }
+    startConnection(callback, reconnect = false) {
+        return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this._hubConnection.start();
-                cb(true);
+                this._initialized = true;
+                if (callback && !reconnect) {
+                    callback(true);
+                }
             }
             catch (_a) {
-                this._hubConnection = undefined;
-                cb(false);
+                if (!reconnect) {
+                    this._hubConnection = undefined;
+                    if (callback) {
+                        callback(false);
+                    }
+                }
+                else {
+                    this.enqueueReconnect();
+                }
             }
         });
+    }
+    enqueueReconnect() {
+        window.setTimeout(() => {
+            Log.d(this, 'Attempting SignalR reconnect');
+            this.startConnection(null, true);
+        }, Math.max(this.options.reconnectAttemptInterval || 0, 10000));
     }
     validateOptions(options) {
         if (!options) {
@@ -56,9 +77,15 @@ export class SignalRHubConnection {
         }
     }
     onClosed(e) {
-        this._hubConnection = undefined;
         if (e) {
             Log.e(this, 'Error on SignalR close', { error: e });
+        }
+        this._initialized = false;
+        if (this.options.reconnectOnClose === true) {
+            this.enqueueReconnect();
+        }
+        else {
+            this._hubConnection = undefined;
         }
     }
     sendRequest(request) {
