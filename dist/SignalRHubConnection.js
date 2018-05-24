@@ -6,7 +6,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { SrServiceResponse, Log } from "react-strontium";
+import { runtime, SrServiceResponse, Log } from "react-strontium";
 import { HubConnectionBuilder } from "@aspnet/signalr";
 export class SignalRHubConnection {
     constructor(options) {
@@ -31,6 +31,9 @@ export class SignalRHubConnection {
                 this._initialized = true;
                 if (callback && !reconnect) {
                     callback(true);
+                }
+                if (reconnect) {
+                    runtime.messaging.broadcast('Strontium.SignalRHub.ReconnectSuccess', true);
                 }
             }
             catch (_a) {

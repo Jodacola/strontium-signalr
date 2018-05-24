@@ -32,8 +32,13 @@ export class SignalRHubConnection implements IApiConnection {
         try {
             await this._hubConnection.start();
             this._initialized = true;
+
             if (callback && !reconnect) {
                 callback(true);
+            }
+
+            if (reconnect) {
+                runtime.messaging.broadcast('Strontium.SignalRHub.ReconnectSuccess', true);
             }
         }
         catch {
